@@ -8,7 +8,19 @@
 # with --start-fullscreen one can kill the window with Alt-F4 and
 # then Ctrl-c in the terminal window.
 #
-# I tried hiding the scrollbar on the right with --hide-scrollbars and/or
-# --disable-overlay-scrollbar but neither worked.
+/usr/bin/chromium-browser --start-fullscreen --hide-scrollbars file://$HOME/screen/www/display.html &
+
+# xprintidle returns the idle time in milliseconds
 #
-/usr/bin/chromium-browser --start-fullscreen --hide-scrollbars file://$HOME/screen/www/display.html
+# xdotool simulates a keypress (the Home key here),
+#   sending it to the window which matches some criterion.
+#
+# The following will cause the page view to return to the top after an
+# interval of between 30+epsilon and 60-epsilon seconds.
+#
+while true; do
+    if [ `xprintidle` -gt 30000 ]; then
+	xdotool search --name "Warwick Mathematics Institute" key Home;
+    fi;
+    sleep 30
+done

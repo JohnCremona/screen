@@ -47,6 +47,8 @@ else
 fi
 if [ "$pageok" = "true" ]
 then
+   echo "appending code to hide scrollbar (chrome and safari only)..."
+   cat hidescrollbars.html >> $pagetoget;
    echo "appending return-to-top code..."
    cat returntotopcode.html >> $pagetoget;
    echo "copying files to "$wwwdir"..."
