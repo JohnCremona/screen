@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/chromium-browser --kiosk file://www/display.html

@@ -4,12 +4,13 @@ screenroot=$HOME"/screen";
 scriptdir=$screenroot"/scripts";
 cd $scriptdir
 wwwdir=$screenroot"/www";
-remotewwwdir="www.maths.warwick.ac.uk/maths/seminars"
+remoteurl="www.maths.warwick.ac.uk"
+remotewwwdir=$remoteurl"/maths/seminars"
 pagetoget=$remotewwwdir"/display.html";
 pageok=true;
 echo "---------------------------------------";
 date;
-rm -rf $wwwdir;
+rm -rf $wwwurl;
 #foo=`wget -p -nv http://$pagetoget 2>&1`;
 foo=`curl -f -s --create-dirs -o $pagetoget http://$pagetoget 2>&1`;
 fooboo=`echo $foo | grep ".*0 files.*"`;
