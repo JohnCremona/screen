@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use lib '.';
+use Signature;
+
+my $shared_secret = 'Lookatour40inchscreen!';
+	
+	
+my $holdTerminator = $/;
+undef $/;
+open(displayfile, "<www.maths.warwick.ac.uk/maths/seminars/display.html") || die "www.maths.warwick.ac.uk/maths/seminars/display.html: $!\n";
+my $data=<displayfile>;
+close displayfile;
+$/ = $holdTerminator;	
+
+
+
+my $signer = Signature->new($shared_secret);
+
+my $hash = $signer->sign($data);
+
+print $hash;

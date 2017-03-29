@@ -1,0 +1,74 @@
+#!/bin/bash
+(
+screenroot=$HOME"/screen";
+scriptdir=$screenroot"/scripts";
+cd $scriptdir
+wwwdir=$screenroot"/www";
+remotewwwdir="www.maths.warwick.ac.uk/maths/seminars"
+pagetoget=$remotewwwdir"/display.html";
+pageok=true;
+echo "---------------------------------------";
+date;
+rm -rf $wwwdir;
+#foo=`wget -p -nv http://$pagetoget 2>&1`;
+foo=`curl -f -s --create-dirs -o $pagetoget http://$pagetoget 2>&1`;
+fooboo=`echo $foo | grep ".*0 files.*"`;
+if [ "$fooboo" = "" ]
+   then
+   if [ -f $pagetoget ]
+   then
+      echo "got page ok";
+      checksum=`tail -1 $pagetoget `
+      echo "the web server says the checksum is $checksum";
+      perl -pi -e "s/$checksum//" $pagetoget;
+      newchecksum=`./checkdisplaypage`;
+      echo "i say the checksum is $newchecksum";
+      if [ "$checksum" = "$newchecksum" ]
+      then
+         echo "checksums match.";
+      else
+         pageok=false;
+         echo "!!!!!!!!!!!!!!!!!!!!!!!";
+         echo "ERROR: checksums did not match. spoof attempt?";
+         echo "!!!!!!!!!!!!!!!!!!!!!!!";
+      fi
+   else
+      pageok=false;
+      echo "!!!!!!!!!!!!!!!!!";
+      echo "ERROR: curl got something but not the file it was after";
+      echo "!!!!!!!!!!!!!!!!!";
+   fi
+else
+   pageok=false;
+   echo "!!!!!!!!!!!!!!!!!";
+   echo "ERROR curl command failed to get anything";
+   echo "!!!!!!!!!!!!!!!!!";
+fi
+if [ "$pageok" = "true" ]
+then
+   echo "appending return-to-top code..."
+   cat returntotopcode.html >> $pagetoget;
+   echo "copying files to "$wwwdir"..."
+   if [ ! -d $wwwdir ]
+   then
+       mkdir $wwwdir
+   fi
+   cp -r $remotewwwdir/* $wwwdir;
+   if [ $? -eq 0 ]
+   then
+      echo "ok."
+   else
+      echo "!!!!!!!!!!!!!!!";
+      echo "ERROR: copy failed";
+      echo "!!!!!!!!!!!!!!!";
+   fi
+else
+   goo=`grep redboxwarning $wwwdir/display.html`;
+   if [ "$goo" = "" ]
+   then
+      cat redbox.html >> $wwwdir/display.html;
+   fi
+fi
+sleep 600;
+) 2>&1 >> logfile.txt;
+exec $0;

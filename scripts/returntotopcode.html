@@ -1,0 +1,23 @@
+<script type="text/javascript">
+// this code monitors the scrolling of the web page.
+// if someone scrolls the page down and leaves it, then after
+// a set period of time the page is scrolled back up to the top.
+
+//the time, in seconds, to wait until scroling the page back to the top.
+var scrolldelay=60
+
+// create a variable to use to reference the timer.
+var scrolltimer=null
+
+// capture scrolling of the page.
+window.onscroll=restarttimer
+
+function restarttimer() {
+   clearTimeout(scrolltimer); // stop and reset the timer to 0.
+   scrolltimer=setTimeout("returntotop()",scrolldelay*1000); // start the timer
+}
+
+function returntotop() {
+   window.scrollTo(0,0); // scroll the page to the top.
+}
+</script>
