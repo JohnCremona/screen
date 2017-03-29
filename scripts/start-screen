@@ -1,2 +1,14 @@
 #!/bin/bash
-/usr/bin/chromium-browser --kiosk file://www/display.html
+#
+# kiosk mode works fine except that it disables the keyboard and so
+# is very hard to get out of! 
+#
+#/usr/bin/chromium-browser --kiosk file://www/display.html
+#
+# with --start-fullscreen one can kill the window with Alt-F4 and
+# then Ctrl-c in the terminal window.
+#
+# I tried hiding the scrollbar on the right with --hide-scrollbars and/or
+# --disable-overlay-scrollbar but neither worked.
+#
+/usr/bin/chromium-browser --start-fullscreen --hide-scrollbars file://$HOME/screen/www/display.html
