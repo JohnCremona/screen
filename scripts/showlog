@@ -1,2 +1,2 @@
 #!/bin/bash
-tail -f logfile.txt
+tail -f ~/logfile.txt
