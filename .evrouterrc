@@ -1,0 +1,14 @@
+Window "": # Window title
+# Window "(null)": # Resource name
+# Window "(null)": # Class name
+
+# Press button --> Home
+"Griffin PowerMate" "/dev/input/by-id/usb-Griffin_Technology_Inc._Griffin_PowerMate-event-if00" none key/256 "XKey/Home"
+
+# turn right --> scroll down
+"Griffin PowerMate" "/dev/input/by-id/usb-Griffin_Technology_Inc._Griffin_PowerMate-event-if00" none rel/7/1 "XKey/Down"
+
+# turn left --> scroll up
+"Griffin PowerMate" "/dev/input/by-id/usb-Griffin_Technology_Inc._Griffin_PowerMate-event-if00" none rel/7/-1 "XKey/Up"
+
+
