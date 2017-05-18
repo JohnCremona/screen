@@ -3,9 +3,9 @@
 use lib '.';
 use Signature;
 
-my $shared_secret = 'Lookatour40inchscreen!';
-	
-	
+open SECRET, "<secret";
+my $shared_secret = do { local $/; <SECRET> };
+
 my $holdTerminator = $/;
 undef $/;
 open(displayfile, "<www.maths.warwick.ac.uk/maths/seminars/display.html") || die "www.maths.warwick.ac.uk/maths/seminars/display.html: $!\n";
