@@ -1,5 +1,9 @@
-This repository contains scripts and configuration  files for a
-computer to drive the screen in the Mathematics Common Room.
+This repository contains scripts and configuration files for a
+computer to drive the screen in the Mathematics Common Room.  It is
+stored at xentu.lnx.warwick.ac.uk which runs gitlab: see
+https://xentu.lnx.warwick.ac.uk/. Login with LDAP and standard Warwick
+username and password.  The gitlabadmin account is run by John
+Cremona.
 
 Summary: (1) The script getseminarspage fetches every 10 minutes the page
 of seminars from a webserver. (2) The script start-screen starts a
@@ -8,8 +12,8 @@ to auto-refresh.  This script also simulates a press of the Home button
 in the browser window if nothing else has been pressed for 30 seconds.
 
 All this currently runs on a Toshiba netbook with ubuntu 16.04
-installed.  The netbook automatically logs in the user seminars when
-it starts up.  The seminars user runs the following automatically on
+installed.  The netbook automatically logs in the user 'seminars' when
+it starts up.  The 'seminars' user runs the following automatically on
 login (configure with gnome-session-properties):
 
  - evrouter: configures the Griffin Powermate so that pressing the
@@ -41,8 +45,10 @@ login (configure with gnome-session-properties):
  - opens a terminal window.
 
 For maintenance while running, it is possible to remotely log in to
-the seminars account (which has no special privileges except the
-ability to run evrouter) or the admin account names jec.
-Alternatively, from the console one can get out of full-screen mode
-with F11 (or if that fails, right click the mouse and select the
-appropriate menu option) and then recover the terminal window.
+the 'seminars' account (which has no special privileges except the
+ability to run evrouter) or the 'admin' account which has sudo
+privileges.  The current IP address is 137.205.57.24 but this might
+change after a reboot.  Alternatively, from the console one can get
+out of full-screen mode with F11 (or if that fails, right click the
+mouse and select the appropriate menu option) and then recover the
+terminal window.
