@@ -11,8 +11,7 @@ pageok=true;
 echo "---------------------------------------";
 date;
 rm -rf $wwwurl;
-#foo=`wget -p -nv http://$pagetoget 2>&1`;
-foo=`curl -f -s --create-dirs -o $pagetoget http://$pagetoget 2>&1`;
+foo=`curl -f -s --create-dirs -o $pagetoget https://$pagetoget 2>&1`;
 fooboo=`echo $foo | grep ".*0 files.*"`;
 if [ "$fooboo" = "" ]
    then
